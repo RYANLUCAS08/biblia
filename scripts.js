@@ -324,3 +324,11 @@ window.onload = () => {
 
 }
 //Observações:lembrar de colocar vírgula depois de fechar versículo; conferir fechamentos das chaves e colchetes.
+
+/*
+Tarefa
+1 - Criar uma constante para capturar o elemento "capitulo" igual foi feito na linha 286
+2 - Criar uma constate para capturar o elemento "versiculo"
+3 - Criar um eventListener para "change" nessa constante de capítulo
+4 - Realizar a contagem de versículos dentro do capítulo
+*/
