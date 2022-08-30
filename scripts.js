@@ -1,3 +1,4 @@
+let tipoLivro=null
 const velhoTestamento = [
     {
         nome: 'Gênesis', capitulos: [
@@ -218,6 +219,7 @@ window.onload = () => {
     //sempre que um option é selecionado
     select.addEventListener('change', (event) => {
 
+        tipoLivro='velho'
         // Quem foi o option selecionado?
         const livro = event.target.value
 
@@ -289,6 +291,8 @@ window.onload = () => {
         
         // 3) você irá desenvolver a lógica para montar o select do capítulo
         // quando o novo testamento for selecionado.	
+            tipoLivro='novo'
+
             const livro = event.target.value
             
             const capitulo = document.getElementById('capitulo');
@@ -313,12 +317,31 @@ window.onload = () => {
     })
 
     for (let i = 0; i < novoTestamento.length; i++) {    
-        capitulos= novoTestamento [i]. capitulos
+        capitulos= novoTestamento [i].capitulos
         const option = document.createElement('OPTION')
         option.innerHTML = novoTestamento[i].nome
         option.setAttribute('value', novoTestamento[i].nome);
         selectNovo.appendChild(option)
     }
+    const selectcapitulo = document.getElementById('capitulo')
+    const selectVersiculo = document.getElementById('versiculo')
+    selectcapitulo.addEventListener('change', (event) => {
+        const capituloAtual=selectcapitulo.value-1
+
+        let contversiculo
+        let livroAtual
+        if(tipoLivro=='novo'){     
+            livroAtual = document.getElementById("novo").selectedIndex - 1
+            contversiculo = novoTestamento[capituloAtual].length
+        }
+        else{
+            livroAtual = document.getElementById("velho").selectedIndex - 1
+            contversiculo = velhoTestamento[capituloAtual].length
+        }
+
+        console.log(`tipoLivro: ${tipoLivro}, livro: ${livroAtual}, capitulo: ${capituloAtual}, contagem: ${contversiculo}`)
+       
+    });
 
 
 
