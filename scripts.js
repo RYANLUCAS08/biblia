@@ -332,15 +332,55 @@ window.onload = () => {
         let livroAtual
         if(tipoLivro=='novo'){     
             livroAtual = document.getElementById("novo").selectedIndex - 1
-            contversiculo = novoTestamento[capituloAtual].length
+            contversiculo = novoTestamento[livroAtual]['capitulos'][capituloAtual]['versiculos'].length
         }
         else{
             livroAtual = document.getElementById("velho").selectedIndex - 1
-            contversiculo = velhoTestamento[capituloAtual].length
+            contversiculo = velhoTestamento[livroAtual]['capitulos'][capituloAtual]['versiculos'].length
         }
 
-        console.log(`tipoLivro: ${tipoLivro}, livro: ${livroAtual}, capitulo: ${capituloAtual}, contagem: ${contversiculo}`)
+        // Fazer uma repetição igual a essa, mas para preencher os versículos
+        // em vez de "capitulo.appendChild" vai ser "selectVersiculo.appendChild" ....
+        // em vez de "capitulos.length" vai ser "contversiculo"
+        //
+        // for (let i = 0; i < capitulos.length; i++){
+        //     const option = document.createElement('OPTION')
+        //     option.innerHTML = i + 1
+        //     capitulo.appendChild(option)
+        // }
+
+
+
+        for(let i=0;i < contversiculo; i++){
+            const option = document.createElement('OPTION')
+            option.innerHTML = i + 1
+            selectVersiculo.appendChild (option)
+            
+        }
+
+
+        //console.log(`tipoLivro: ${tipoLivro}, livro: ${livroAtual}, capitulo: ${capituloAtual}, contagem: ${contversiculo}`)
        
+    });
+
+    // Fazer um eventlistener igual, mas para o selectVersiculo
+    //selectcapitulo.addEventListener('change', (event) => {
+    
+    selectVersiculo.addEventListener('change', (event) => {
+        const capituloAtual=selectcapitulo.value-1
+        const versiculoAtual=selectVersiculo.value-1
+        let versiculoTela
+        if(tipoLivro=='novo'){     
+            livroAtual = document.getElementById("novo").selectedIndex - 1
+            versiculoTela = novoTestamento[livroAtual]['capitulos'][capituloAtual]['versiculos'][versiculoAtual]
+        }
+        else{
+            livroAtual = document.getElementById("velho").selectedIndex - 1
+            versiculoTela = velhoTestamento[livroAtual]['capitulos'][capituloAtual]['versiculos'][versiculoAtual]
+        }
+
+        document.getElementById('mostrarVersiculo').innerHTML=versiculoTela
+        
     });
 
 
